@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripForFilteringProcesses = new System.Windows.Forms.ToolStrip();
             this.filterByName = new System.Windows.Forms.ToolStripLabel();
             this.searchString = new System.Windows.Forms.ToolStripTextBox();
             this.ListViewOfProcesses = new System.Windows.Forms.ListView();
@@ -39,20 +39,20 @@
             this.allThreadsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitThreeOfProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStrip1.SuspendLayout();
+            this.toolStripForFilteringProcesses.SuspendLayout();
             this.contextMenuStripForListItem.SuspendLayout();
             this.SuspendLayout();
             // 
-            // toolStrip1
+            // toolStripForFilteringProcesses
             // 
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripForFilteringProcesses.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.filterByName,
             this.searchString});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(800, 25);
-            this.toolStrip1.TabIndex = 0;
-            this.toolStrip1.Text = "toolStrip1";
+            this.toolStripForFilteringProcesses.Location = new System.Drawing.Point(0, 0);
+            this.toolStripForFilteringProcesses.Name = "toolStripForFilteringProcesses";
+            this.toolStripForFilteringProcesses.Size = new System.Drawing.Size(800, 25);
+            this.toolStripForFilteringProcesses.TabIndex = 0;
+            this.toolStripForFilteringProcesses.Text = "toolStrip1";
             // 
             // filterByName
             // 
@@ -62,8 +62,10 @@
             // 
             // searchString
             // 
+            this.searchString.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.searchString.Name = "searchString";
             this.searchString.Size = new System.Drawing.Size(100, 25);
+            this.searchString.TextChanged += new System.EventHandler(this.searchString_TextChanged);
             // 
             // ListViewOfProcesses
             // 
@@ -99,7 +101,7 @@
             this.exitProcessToolStripMenuItem,
             this.exitThreeOfProcessToolStripMenuItem});
             this.contextMenuStripForListItem.Name = "contextMenuStripForListItem";
-            this.contextMenuStripForListItem.Size = new System.Drawing.Size(183, 70);
+            this.contextMenuStripForListItem.Size = new System.Drawing.Size(183, 92);
             // 
             // allThreadsToolStripMenuItem
             // 
@@ -112,6 +114,7 @@
             this.exitProcessToolStripMenuItem.Name = "exitProcessToolStripMenuItem";
             this.exitProcessToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.exitProcessToolStripMenuItem.Text = "Exit Process";
+            this.exitProcessToolStripMenuItem.Click += new System.EventHandler(this.exitProcessToolStripMenuItem_Click);
             // 
             // exitThreeOfProcessToolStripMenuItem
             // 
@@ -125,11 +128,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.ListViewOfProcesses);
-            this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.toolStripForFilteringProcesses);
             this.Name = "Form1";
             this.Text = "ProcessHandler";
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            this.Load += new System.EventHandler(this.Form1_Load);
+            this.toolStripForFilteringProcesses.ResumeLayout(false);
+            this.toolStripForFilteringProcesses.PerformLayout();
             this.contextMenuStripForListItem.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -138,7 +142,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStrip toolStripForFilteringProcesses;
         private System.Windows.Forms.ToolStripLabel filterByName;
         private System.Windows.Forms.ToolStripTextBox searchString;
         private System.Windows.Forms.ListView ListViewOfProcesses;
