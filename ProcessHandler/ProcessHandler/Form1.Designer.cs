@@ -39,8 +39,12 @@
             this.allThreadsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitThreeOfProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripForFilteringProcesses.SuspendLayout();
             this.contextMenuStripForListItem.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStripForFilteringProcesses
@@ -48,7 +52,7 @@
             this.toolStripForFilteringProcesses.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.filterByName,
             this.searchString});
-            this.toolStripForFilteringProcesses.Location = new System.Drawing.Point(0, 0);
+            this.toolStripForFilteringProcesses.Location = new System.Drawing.Point(0, 24);
             this.toolStripForFilteringProcesses.Name = "toolStripForFilteringProcesses";
             this.toolStripForFilteringProcesses.Size = new System.Drawing.Size(800, 25);
             this.toolStripForFilteringProcesses.TabIndex = 0;
@@ -76,10 +80,10 @@
             this.ListViewOfProcesses.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ListViewOfProcesses.GridLines = true;
             this.ListViewOfProcesses.HideSelection = false;
-            this.ListViewOfProcesses.Location = new System.Drawing.Point(0, 25);
+            this.ListViewOfProcesses.Location = new System.Drawing.Point(0, 49);
             this.ListViewOfProcesses.MultiSelect = false;
             this.ListViewOfProcesses.Name = "ListViewOfProcesses";
-            this.ListViewOfProcesses.Size = new System.Drawing.Size(800, 425);
+            this.ListViewOfProcesses.Size = new System.Drawing.Size(800, 401);
             this.ListViewOfProcesses.TabIndex = 1;
             this.ListViewOfProcesses.UseCompatibleStateImageBehavior = false;
             this.ListViewOfProcesses.View = System.Windows.Forms.View.Details;
@@ -101,13 +105,14 @@
             this.exitProcessToolStripMenuItem,
             this.exitThreeOfProcessToolStripMenuItem});
             this.contextMenuStripForListItem.Name = "contextMenuStripForListItem";
-            this.contextMenuStripForListItem.Size = new System.Drawing.Size(183, 92);
+            this.contextMenuStripForListItem.Size = new System.Drawing.Size(183, 70);
             // 
             // allThreadsToolStripMenuItem
             // 
             this.allThreadsToolStripMenuItem.Name = "allThreadsToolStripMenuItem";
             this.allThreadsToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.allThreadsToolStripMenuItem.Text = "All Threads";
+            this.allThreadsToolStripMenuItem.Click += new System.EventHandler(this.allThreadsToolStripMenuItem_Click);
             // 
             // exitProcessToolStripMenuItem
             // 
@@ -122,6 +127,31 @@
             this.exitThreeOfProcessToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.exitThreeOfProcessToolStripMenuItem.Text = "Exit Three of Process";
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.TabIndex = 2;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.createProcessToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // createProcessToolStripMenuItem
+            // 
+            this.createProcessToolStripMenuItem.Name = "createProcessToolStripMenuItem";
+            this.createProcessToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.createProcessToolStripMenuItem.Text = "Create Process";
+            this.createProcessToolStripMenuItem.Click += new System.EventHandler(this.createProcessToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -129,12 +159,16 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.ListViewOfProcesses);
             this.Controls.Add(this.toolStripForFilteringProcesses);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "ProcessHandler";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.toolStripForFilteringProcesses.ResumeLayout(false);
             this.toolStripForFilteringProcesses.PerformLayout();
             this.contextMenuStripForListItem.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -152,6 +186,9 @@
         private System.Windows.Forms.ToolStripMenuItem allThreadsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitProcessToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitThreeOfProcessToolStripMenuItem;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem createProcessToolStripMenuItem;
     }
 }
 

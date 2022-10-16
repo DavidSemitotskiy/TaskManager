@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace ProcessHandler
@@ -20,6 +19,11 @@ namespace ProcessHandler
         {
             process.Kill();
             process.WaitForExit();
+        }
+
+        public ProcessThreadCollection GetThreads(Process process)
+        {
+            return process.Threads;
         }
     }
 }
