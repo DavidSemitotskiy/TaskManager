@@ -10,6 +10,11 @@ namespace ProcessHandler
             get => Process.GetProcesses();
         }
 
+        public Process GetProcessById(int id)
+        {
+            return Process.GetProcessById(id);
+        }
+
         public int GetUsedMemory(Process process)
         {
             return process.WorkingSet / (1000 * 1000); ;

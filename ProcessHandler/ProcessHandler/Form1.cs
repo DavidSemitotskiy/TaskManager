@@ -3,12 +3,14 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace ProcessHandler
 {
     public partial class Form1 : Form
     {
         private ProcessHandler processHandler = new ProcessHandler();
+        private string _matchPatternName = @":?(\d{1,}) :?([a-z-A-Z]+)";
 
         public Form1()
         {
@@ -26,7 +28,7 @@ namespace ProcessHandler
 
             foreach (var process in processes)
             {
-                string[] columnsText = new string[] { process.ProcessName,
+                string[] columnsText = new string[] { $"{process.Id} {process.ProcessName}",
                         $"{processHandler.GetUsedMemory(process)} Mb" };
 
                 ListViewOfProcesses.Items.Add(new ListViewItem(columnsText));
@@ -46,16 +48,17 @@ namespace ProcessHandler
         private void exitProcessToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
             var processes = processHandler.ActiveProcesses;
-            processHandler.KillProcess(processes.FirstOrDefault(proc => proc.ProcessName == ListViewOfProcesses.SelectedItems[0].SubItems[0].Text));
+            var proc = processHandler.GetProcessById(GetIdFromProcNameInListView(ListViewOfProcesses.SelectedItems[0].SubItems[0].Text));
+            processHandler.KillProcess(proc);
             UpdateListOfProcesses(searchString.Text);
         }
 
         private void allThreadsToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
-            var process = processHandler.ActiveProcesses.FirstOrDefault(proc => proc.ProcessName == ListViewOfProcesses.SelectedItems[0].SubItems[0].Text);
-            var threads = processHandler.GetThreads(process);
+            var proc = processHandler.GetProcessById(GetIdFromProcNameInListView(ListViewOfProcesses.SelectedItems[0].SubItems[0].Text));
+            var threads = processHandler.GetThreads(proc);
             var text = GetTextToShowThreadsInMessageBox(threads);
-            MessageBox.Show(text, "Threads", MessageBoxButtons.OKCancel);
+            MessageBox.Show(text, $"Threads for {proc.Id} - {proc.ProcessName}", MessageBoxButtons.OKCancel);
         }
 
         private string GetTextToShowThreadsInMessageBox(ProcessThreadCollection threads)
@@ -83,6 +86,12 @@ namespace ProcessHandler
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
             }
+        }
+
+        private int GetIdFromProcNameInListView(string name)
+        {
+            var resultMatching = Regex.Match(name, _matchPatternName);
+            return int.Parse(resultMatching.Groups[1].Value);
         }
     }
 }
