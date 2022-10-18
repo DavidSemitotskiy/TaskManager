@@ -66,7 +66,6 @@
             // 
             // searchString
             // 
-            this.searchString.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.searchString.Name = "searchString";
             this.searchString.Size = new System.Drawing.Size(100, 25);
             this.searchString.TextChanged += new System.EventHandler(this.searchString_TextChanged);
@@ -105,7 +104,7 @@
             this.exitProcessToolStripMenuItem,
             this.exitThreeOfProcessToolStripMenuItem});
             this.contextMenuStripForListItem.Name = "contextMenuStripForListItem";
-            this.contextMenuStripForListItem.Size = new System.Drawing.Size(183, 70);
+            this.contextMenuStripForListItem.Size = new System.Drawing.Size(183, 92);
             // 
             // allThreadsToolStripMenuItem
             // 
@@ -126,6 +125,7 @@
             this.exitThreeOfProcessToolStripMenuItem.Name = "exitThreeOfProcessToolStripMenuItem";
             this.exitThreeOfProcessToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.exitThreeOfProcessToolStripMenuItem.Text = "Exit Three of Process";
+            this.exitThreeOfProcessToolStripMenuItem.Click += new System.EventHandler(this.exitThreeOfProcessToolStripMenuItem_Click);
             // 
             // menuStrip1
             // 
@@ -148,7 +148,7 @@
             // createProcessToolStripMenuItem
             // 
             this.createProcessToolStripMenuItem.Name = "createProcessToolStripMenuItem";
-            this.createProcessToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.createProcessToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.createProcessToolStripMenuItem.Text = "Create Process";
             this.createProcessToolStripMenuItem.Click += new System.EventHandler(this.createProcessToolStripMenuItem_Click);
             // 

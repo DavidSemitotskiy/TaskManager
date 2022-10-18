@@ -93,5 +93,13 @@ namespace ProcessHandler
             var resultMatching = Regex.Match(name, _matchPatternName);
             return int.Parse(resultMatching.Groups[1].Value);
         }
+
+        private void exitThreeOfProcessToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var proc = processHandler.GetProcessById(GetIdFromProcNameInListView(ListViewOfProcesses.SelectedItems[0].SubItems[0].Text));
+            var parentId = processHandler.GetParentProcessId(proc);
+            processHandler.KillChildrenProc(parentId);
+            UpdateListOfProcesses(searchString.Text);
+        }
     }
 }
