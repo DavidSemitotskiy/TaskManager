@@ -25,8 +25,15 @@ namespace ProcessHandler
 
         public void KillProcess(Process process)
         {
-            process.Kill();
-            process.WaitForExit();
+            try
+            {
+                process.Kill();
+                process.WaitForExit();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
         }
 
         public int GetParentProcessId(Process process)
