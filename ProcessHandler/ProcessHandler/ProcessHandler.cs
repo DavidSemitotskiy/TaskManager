@@ -29,12 +29,12 @@ namespace ProcessHandler
             process.WaitForExit();
         }
 
-        public int GetParentProcessId(Process p)
+        public int GetParentProcessId(Process process)
         {
             int parentId = 0;
             try
             {
-                ManagementObject mo = new ManagementObject("win32_process.handle='" + p.Id + "'");
+                ManagementObject mo = new ManagementObject($"win32_process.handle='{process.Id}'");
                 mo.Get();
                 parentId = Convert.ToInt32(mo["ParentProcessId"]);
             }
@@ -55,7 +55,7 @@ namespace ProcessHandler
             }
 
             ManagementObjectSearcher searcher = new ManagementObjectSearcher
-                ("Select * From Win32_Process Where ParentProcessID=" + parentId);
+                ($"Select * From Win32_Process Where ParentProcessID={parentId}");
 
             ManagementObjectCollection moc = searcher.Get();
             foreach (ManagementObject mo in moc)
