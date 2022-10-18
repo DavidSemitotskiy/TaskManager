@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using System.Threading;
 
 namespace ProcessHandler
 {
     public partial class Form1 : Form
     {
+        private delegate void UpdateListViewDelegate(string filter);
         private ProcessHandler processHandler = new ProcessHandler();
         private string _matchPatternName = @":?(\d{1,}) :?([a-z-A-Z]+)";
 
@@ -19,6 +21,20 @@ namespace ProcessHandler
 
         public void UpdateListOfProcesses(string filter = null)
         {
+            if (ListViewOfProcesses.InvokeRequired)
+            {
+                var deleg = new UpdateListViewDelegate(UpdateListOfProcesses);
+                Invoke(deleg, searchString.Text);
+                return;
+            }
+
+            int topItemIndex = 0;
+            if (ListViewOfProcesses.TopItem != null)
+            {
+                topItemIndex = ListViewOfProcesses.TopItem.Index;
+            }
+
+            ListViewOfProcesses.BeginUpdate();
             ListViewOfProcesses.Items.Clear();
             var processes = processHandler.ActiveProcesses;
             if (!string.IsNullOrWhiteSpace(filter))
@@ -33,11 +49,27 @@ namespace ProcessHandler
 
                 ListViewOfProcesses.Items.Add(new ListViewItem(columnsText));
             }
+
+            ListViewOfProcesses.EndUpdate();
+            try
+            {
+                ListViewOfProcesses.TopItem = ListViewOfProcesses.Items[topItemIndex];
+            }
+            catch (Exception ex) { }
         }
 
         private void Form1_Load(object sender, System.EventArgs e)
         {
-            UpdateListOfProcesses();
+            Thread thread = new Thread(() =>
+            {
+                while (true)
+                {
+                    UpdateListOfProcesses(searchString.Text);
+                    Thread.Sleep(7000);
+                }
+            });
+            thread.IsBackground = true;
+            thread.Start();
         }
 
         private void searchString_TextChanged(object sender, System.EventArgs e)

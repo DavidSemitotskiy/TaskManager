@@ -66,6 +66,7 @@
             // 
             // searchString
             // 
+            this.searchString.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.searchString.Name = "searchString";
             this.searchString.Size = new System.Drawing.Size(100, 25);
             this.searchString.TextChanged += new System.EventHandler(this.searchString_TextChanged);
@@ -79,6 +80,7 @@
             this.ListViewOfProcesses.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ListViewOfProcesses.GridLines = true;
             this.ListViewOfProcesses.HideSelection = false;
+            this.ListViewOfProcesses.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.ListViewOfProcesses.Location = new System.Drawing.Point(0, 49);
             this.ListViewOfProcesses.MultiSelect = false;
             this.ListViewOfProcesses.Name = "ListViewOfProcesses";
@@ -104,7 +106,7 @@
             this.exitProcessToolStripMenuItem,
             this.exitThreeOfProcessToolStripMenuItem});
             this.contextMenuStripForListItem.Name = "contextMenuStripForListItem";
-            this.contextMenuStripForListItem.Size = new System.Drawing.Size(183, 92);
+            this.contextMenuStripForListItem.Size = new System.Drawing.Size(183, 70);
             // 
             // allThreadsToolStripMenuItem
             // 
