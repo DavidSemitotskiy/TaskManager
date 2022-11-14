@@ -26,7 +26,12 @@ namespace ProcessHandler
             if (ListViewOfProcesses.InvokeRequired)
             {
                 var deleg = new UpdateListViewDelegate(UpdateListOfProcesses);
-                Invoke(deleg, searchString.Text);
+                try
+                {
+                    Invoke(deleg, searchString.Text);
+                }
+                catch { }
+
                 return;
             }
 
