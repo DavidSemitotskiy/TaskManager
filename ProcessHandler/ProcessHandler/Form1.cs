@@ -14,6 +14,7 @@ namespace ProcessHandler
         private ProcessHandler processHandler = new ProcessHandler();
         private string _matchPatternName = @":?(\d{1,}) :?([a-z-A-Z]+)";
         private bool _textChanged = false;
+        private bool _isItemsDeleted = false;
 
         public Form1()
         {
@@ -62,12 +63,13 @@ namespace ProcessHandler
                 ListViewOfProcesses.Items.Add(new ListViewItem(columnsText));
             }
 
-            if (selectedItem >= 0)
+            if (selectedItem >= 0 && !_isItemsDeleted)
             {
                 ListViewOfProcesses.Items[selectedItem].Selected = true;
             }
 
             _textChanged = false;
+            _isItemsDeleted = false;
             ListViewOfProcesses.EndUpdate();
             try
             {
@@ -98,9 +100,9 @@ namespace ProcessHandler
 
         private void exitProcessToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
-            var processes = processHandler.ActiveProcesses;
             var proc = processHandler.GetProcessById(GetIdFromProcNameInListView(ListViewOfProcesses.SelectedItems[0].SubItems[0].Text));
             processHandler.KillProcess(proc);
+            _isItemsDeleted = true;
             UpdateListOfProcesses(searchString.Text);
         }
 
@@ -150,6 +152,7 @@ namespace ProcessHandler
             var proc = processHandler.GetProcessById(GetIdFromProcNameInListView(ListViewOfProcesses.SelectedItems[0].SubItems[0].Text));
             var parentId = processHandler.GetParentProcessId(proc);
             processHandler.KillChildrenProc(parentId);
+            _isItemsDeleted = true;
             UpdateListOfProcesses(searchString.Text);
         }
     }
