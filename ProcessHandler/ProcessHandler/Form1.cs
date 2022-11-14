@@ -13,6 +13,7 @@ namespace ProcessHandler
         private delegate void UpdateListViewDelegate(string filter);
         private ProcessHandler processHandler = new ProcessHandler();
         private string _matchPatternName = @":?(\d{1,}) :?([a-z-A-Z]+)";
+        private bool _textChanged = false;
 
         public Form1()
         {
@@ -35,10 +36,21 @@ namespace ProcessHandler
             }
 
             ListViewOfProcesses.BeginUpdate();
+            int selectedItem = -1;
+            if (ListViewOfProcesses.SelectedIndices.Count != 0)
+            {
+                selectedItem = ListViewOfProcesses.SelectedIndices[0];
+            }
+
             ListViewOfProcesses.Items.Clear();
             var processes = processHandler.ActiveProcesses;
             if (!string.IsNullOrWhiteSpace(filter))
             {
+                if (_textChanged)
+                {
+                    selectedItem = -1;
+                }
+
                 processes = processes.Where(proc => proc.ProcessName.Contains(filter));
             }
 
@@ -50,6 +62,12 @@ namespace ProcessHandler
                 ListViewOfProcesses.Items.Add(new ListViewItem(columnsText));
             }
 
+            if (selectedItem >= 0)
+            {
+                ListViewOfProcesses.Items[selectedItem].Selected = true;
+            }
+
+            _textChanged = false;
             ListViewOfProcesses.EndUpdate();
             try
             {
@@ -65,7 +83,7 @@ namespace ProcessHandler
                 while (true)
                 {
                     UpdateListOfProcesses(searchString.Text);
-                    Thread.Sleep(7000);
+                    Thread.Sleep(1000);
                 }
             });
             thread.IsBackground = true;
@@ -74,6 +92,7 @@ namespace ProcessHandler
 
         private void searchString_TextChanged(object sender, System.EventArgs e)
         {
+            _textChanged = true;
             UpdateListOfProcesses(searchString.Text);
         }
 
