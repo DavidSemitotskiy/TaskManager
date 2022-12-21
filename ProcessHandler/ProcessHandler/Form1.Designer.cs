@@ -35,6 +35,9 @@
             this.ListViewOfProcesses = new System.Windows.Forms.ListView();
             this.ProcessName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.UsedMemory = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.BasePriority = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.HandleCount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.MainWindowTitle = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contextMenuStripForListItem = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.allThreadsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,6 +45,8 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createProcessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SessionId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.CountThreads = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.toolStripForFilteringProcesses.SuspendLayout();
             this.contextMenuStripForListItem.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -66,7 +71,6 @@
             // 
             // searchString
             // 
-            this.searchString.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.searchString.Name = "searchString";
             this.searchString.Size = new System.Drawing.Size(100, 25);
             this.searchString.TextChanged += new System.EventHandler(this.searchString_TextChanged);
@@ -75,7 +79,12 @@
             // 
             this.ListViewOfProcesses.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ProcessName,
-            this.UsedMemory});
+            this.UsedMemory,
+            this.BasePriority,
+            this.HandleCount,
+            this.MainWindowTitle,
+            this.SessionId,
+            this.CountThreads});
             this.ListViewOfProcesses.ContextMenuStrip = this.contextMenuStripForListItem;
             this.ListViewOfProcesses.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ListViewOfProcesses.GridLines = true;
@@ -98,6 +107,21 @@
             // 
             this.UsedMemory.Text = "Memory";
             this.UsedMemory.Width = 200;
+            // 
+            // BasePriority
+            // 
+            this.BasePriority.Text = "Base priority";
+            this.BasePriority.Width = 63;
+            // 
+            // HandleCount
+            // 
+            this.HandleCount.Text = "Count of handles";
+            this.HandleCount.Width = 137;
+            // 
+            // MainWindowTitle
+            // 
+            this.MainWindowTitle.Text = "Main window title";
+            this.MainWindowTitle.Width = 178;
             // 
             // contextMenuStripForListItem
             // 
@@ -154,6 +178,14 @@
             this.createProcessToolStripMenuItem.Text = "Create Process";
             this.createProcessToolStripMenuItem.Click += new System.EventHandler(this.createProcessToolStripMenuItem_Click);
             // 
+            // SessionId
+            // 
+            this.SessionId.Text = "Session id";
+            // 
+            // CountThreads
+            // 
+            this.CountThreads.Text = "Count of threads";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -191,6 +223,11 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem createProcessToolStripMenuItem;
+        private System.Windows.Forms.ColumnHeader BasePriority;
+        private System.Windows.Forms.ColumnHeader HandleCount;
+        private System.Windows.Forms.ColumnHeader MainWindowTitle;
+        private System.Windows.Forms.ColumnHeader SessionId;
+        private System.Windows.Forms.ColumnHeader CountThreads;
     }
 }
 

@@ -62,8 +62,10 @@ namespace ProcessHandler
 
             foreach (var process in processes)
             {
-                string[] columnsText = new string[] { $"{process.Id} {process.ProcessName}",
-                        $"{processHandler.GetUsedMemory(process)} Mb" };
+                string[] columnsText = new string[] { $"{ process.Id } { process.ProcessName }",
+                        $"{ processHandler.GetUsedMemory(process) } Mb", $"{ process.BasePriority }",
+                        $"{ process.HandleCount }", $"{ process.MainWindowTitle }",
+                        $"{ process.SessionId }", $"{ process.Threads.Count }"};
 
                 ListViewOfProcesses.Items.Add(new ListViewItem(columnsText));
             }
@@ -90,7 +92,7 @@ namespace ProcessHandler
                 while (true)
                 {
                     UpdateListOfProcesses(searchString.Text);
-                    Thread.Sleep(1000);
+                    Thread.Sleep(7000);
                 }
             });
             thread.IsBackground = true;
@@ -134,16 +136,6 @@ namespace ProcessHandler
         {
             var createProcForm = new CreateProcForm();
             createProcForm.ShowDialog();
-            var path = createProcForm.Path;
-
-            try
-            {
-                Process.Start(new ProcessStartInfo(path));
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
-            }
         }
 
         private int GetIdFromProcNameInListView(string name)

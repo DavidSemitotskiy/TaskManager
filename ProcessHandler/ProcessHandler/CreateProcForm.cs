@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace ProcessHandler
@@ -10,8 +11,6 @@ namespace ProcessHandler
             InitializeComponent();
         }
 
-        public string Path { get; private set; }
-
         private void buttonCreateProc_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(pathText.Text))
@@ -20,7 +19,15 @@ namespace ProcessHandler
                 return;
             }
 
-            Path = pathText.Text;
+            try
+            {
+                Process.Start(new ProcessStartInfo(pathText.Text));
+            }
+            catch
+            {
+                MessageBox.Show("Incorrect path", "Error", MessageBoxButtons.OK);
+            }
+
             Close();
         }
     }

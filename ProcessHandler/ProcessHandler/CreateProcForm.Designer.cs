@@ -29,29 +29,19 @@
         private void InitializeComponent()
         {
             this.buttonCreateProc = new System.Windows.Forms.Button();
-            this.buttonCancel = new System.Windows.Forms.Button();
             this.pathToOpenProcLabel = new System.Windows.Forms.Label();
             this.pathText = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // buttonCreateProc
             // 
-            this.buttonCreateProc.Location = new System.Drawing.Point(43, 90);
+            this.buttonCreateProc.Location = new System.Drawing.Point(85, 90);
             this.buttonCreateProc.Name = "buttonCreateProc";
             this.buttonCreateProc.Size = new System.Drawing.Size(95, 20);
             this.buttonCreateProc.TabIndex = 0;
             this.buttonCreateProc.Text = "Create";
             this.buttonCreateProc.UseVisualStyleBackColor = true;
             this.buttonCreateProc.Click += new System.EventHandler(this.buttonCreateProc_Click);
-            // 
-            // buttonCancel
-            // 
-            this.buttonCancel.Location = new System.Drawing.Point(154, 90);
-            this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(95, 20);
-            this.buttonCancel.TabIndex = 1;
-            this.buttonCancel.Text = "Cancel";
-            this.buttonCancel.UseVisualStyleBackColor = true;
             // 
             // pathToOpenProcLabel
             // 
@@ -76,8 +66,9 @@
             this.ClientSize = new System.Drawing.Size(264, 122);
             this.Controls.Add(this.pathText);
             this.Controls.Add(this.pathToOpenProcLabel);
-            this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonCreateProc);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "CreateProcForm";
             this.Text = "CreateProcForm";
             this.ResumeLayout(false);
@@ -88,7 +79,6 @@
         #endregion
 
         private System.Windows.Forms.Button buttonCreateProc;
-        private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Label pathToOpenProcLabel;
         private System.Windows.Forms.TextBox pathText;
     }
